@@ -27,7 +27,7 @@ async function playBlackJack(msg, bet) {
 
     const filter = (reaction, user) => ['🃏','✋'].includes(reaction.emoji.name) && user.id === msg.author.id;
     while (true) {
-        const collected = await gameMsg.awaitReactions({ filter, max:1, time:6000 });
+        const collected = await gameMsg.awaitReactions({ filter, max:1, time:60000 });
         const choice = collected.first()?.emoji.name;
 
         if (choice === '🃏') {
