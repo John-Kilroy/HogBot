@@ -1,0 +1,24 @@
+{
+  "name": "hogbot",
+  "version": "1.0.0",
+  "description": "Discord Bot named HogBot who is generally just a nuisance.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John-Kilroy/HogBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/John-Kilroy/HogBot/issues"
+  },
+  "homepage": "https://github.com/John-Kilroy/HogBot#readme",
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.2.0"
+  }
+}
