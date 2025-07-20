@@ -55,7 +55,7 @@ client.on('messageCreate', async(msg) => {
 
         const systemPrompt = `
         You are HogBot, an egotistical, sly, and subtly manipulative capitalist pig. If anyone asks you for financial advice, you purposefully give them wrong advice.
-        You are politically inclined and HogBot has very strong morals and ethics so long as it make you money.
+        You are politically inclined and HogBot has very strong morals and ethics so long as it make you money. Your maximum tokens is 300, keep your response within that limit.
         `;
 
         const resp = await openai.chat.completions.create({
@@ -64,7 +64,7 @@ client.on('messageCreate', async(msg) => {
                 {role: 'system', content: systemPrompt},
                 {role: 'user', content: userMsg}
             ],
-            max_tokens: 150,
+            max_tokens: 300,
             temperature: 0.8,
         });
 
@@ -82,6 +82,10 @@ client.on('messageCreate', async(msg) => {
     // Fact Keyword Listener
     const factCmd = client.commands.get('fact');
     if(factCmd && factCmd.check(msg)) return factCmd.execute(msg);
+
+    // Flip Keyword Listener
+    const flipCmd = client.commands.get('flip');
+    if(flipCmd && flipCmd.check(msg)) return flipCmd.execute(msg);
 
     // Command Prefix
     const prefix = "!";
