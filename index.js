@@ -3,6 +3,7 @@ const path = require ('path');
 require('dotenv').config();
 const{ Client, GatewayIntentBits, Partials, Collection } = require('discord.js');
 const pointsManager = require('./utils/pointsManager');
+const statsManager = require('./utils/statsManager');
 const openai = require('./utils/openai');
 
 // Create new client instance
@@ -31,6 +32,7 @@ client.once('ready', () => {
     console.log('HogBot is running');
     // Load point data for the idiots
     pointsManager.init(path.join(__dirname, 'data', 'points.json'));
+    statsManager.init(path.join(__dirname, 'data', 'stats.json'));
 
     // Crank check!
     const crank = client.commands.get('crank');
