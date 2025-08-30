@@ -1,0 +1,45 @@
+const fs_utils = require('fs');
+const path = require('path');
+
+let STATS_FILE;
+let data = {};
+
+module.exports = {
+  init(filePath) {
+    STATS_FILE = filePath;
+    const dir = path.dirname(STATS_FILE);
+    if (!fs_utils.existsSync(dir)) fs_utils.mkdirSync(dir, { recursive: true });
+
+    let fileContent = '{}';
+    if (fs_utils.existsSync(STATS_FILE)) {
+      fileContent = fs_utils.readFileSync(STATS_FILE, 'utf8').trim();
+    }
+    try {
+      data = fileContent ? JSON.parse(fileContent) : {};
+    } catch (err) {
+      console.warn('Warning: invalid JSON in stats file, resetting.');
+      data = {};
+    }
+
+    // ensure structure
+    if (typeof data.crankCount !== 'number') data.crankCount = 0;
+
+    fs_utils.writeFileSync(STATS_FILE, JSON.stringify(data, null, 2), 'utf8');
+    },
+
+    incrementCrank() {
+        data.crankCount = (data.crankCount || 0) + 1;
+        fs_utils.writeFileSync(STATS_FILE, JSON.stringify(data, null, 2), 'utf8');
+        return data.crankCount;
+    },
+
+    getCrankCount() {
+        return data.crankCount || 0;
+    },
+
+    resetCrankCount() {
+        data.crankCount = 0;
+        fs_utils.writeFileSync(STATS_FILE, JSON.stringify(data, null, 2), 'utf8');
+        return data.crankCount;
+    }
+};
