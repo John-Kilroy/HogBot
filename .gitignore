@@ -1,0 +1,75 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+.pnpm-debug.log
+
+# Build / output
+dist/
+build/
+coverage/
+coverage-final.json
+
+# Env / secrets — DO NOT COMMIT ANY .env OR KEY FILES
+.env
+.env.*
+!.env.example
+
+# Local data / persisted files
+/data/
+data/
+data/*.json
+!.gitkeep
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+id_rsa
+id_rsa.pub
+ssh-keys/
+.ssh/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Process manager / runtime
+pm2.log
+pids/
+*.pid
+*.seed
+
+# Containers
+.envrc
+.Dockerfile
+docker-compose.override.yml
+
+# Misc
+*.bak
+*.tmp
+*.temp
+
+# Optional: ignore local config files that sometimes contain secrets
+config.json
+config.local.json
+credentials.json
