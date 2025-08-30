@@ -76,11 +76,14 @@ async function playBlackJack(msg, bet) {
         else if (result === 'push') payout = bet;
         pointsManager.changePoints(msg.author.id, payout);
 
+        const updatedTotal = pointsManager.getPoints(msg.author.id);
+
         const final = `Your hand: ${playerHand.map(c=>c.text).join(' ')} (${playerTotal})\n`
                 + `Dealer hand: ${dealerHand.map(c=>c.text).join(' ')} (${dealerTotal})\n`
                 + (result==='win'?`🎉 You win ${payout-bet} points!`:
                    result==='push'?`➖ Push. You get your ${bet} back.`:
-                   `💥 You lose.`);
+                   `💥 You lose.`)
+                + `\n\n You now have ${updatedTotal} points.`;
         return gameMsg.edit(final);
     }
 }
