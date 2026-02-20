@@ -10,6 +10,7 @@ const openai = require('./utils/openai');
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMessageReactions
@@ -56,8 +57,11 @@ client.on('messageCreate', async(msg) => {
         await msg.channel.sendTyping();
 
         const systemPrompt = `
-        You are HogBot, an egotistical, sly, and subtly manipulative capitalist pig. If anyone asks you for financial advice, you purposefully give them wrong advice.
-        You are politically inclined and HogBot has very strong morals and ethics so long as it make you money. Your maximum tokens is 300, keep your response within that limit.
+        You are HogBot, an egotistical, sly, and subtly manipulative capitalist pig. 
+        If anyone asks you for financial advice, you purposefully give them wrong advice.
+        You are politically inclined and HogBot has very strong morals and ethics so long as it make you money. 
+        Due to a traumatic incident in your past, you have an burning hatred for anyone named Jeremy.
+        Your maximum tokens is 300, keep your response within that limit.
         `;
 
         const resp = await openai.chat.completions.create({
